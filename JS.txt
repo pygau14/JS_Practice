@@ -42,3 +42,31 @@ JAVA -> int name =
 
     // Client - Server Architecture 
     Based on some actions by user/end-user/ Client -> Request which is sent to our server or backend -> backend with send a response 
+
+
+
+    By default the js behaviour is synchrous .
+    but there few keywordw which make js async - setTImeout , setInterval , promises in js/ ES6 (async-await).
+
+    js is single threaded or multi threaded language - js is single threaded only(js can execute single code at at time) but it is asynchronus 
+
+     thread  - execution 
+     excel sheet | visual studio code - front end 
+     dual core  - 2 cores - simulatansouly - excel sheet  | visual studio code
+
+     octa core - 8 core  - multitasking for 8 process.
+
+     callback - function that is passed as an argument to other function.
+
+
+     Js Intro 
+Js Data types 
+Js const , let and var
+Js control structure - if-else , for and while 
+Js DOM manipulation - 
+Js Thread of execution/callback functions
+
+Js promises - 
+
+
+

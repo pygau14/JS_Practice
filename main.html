@@ -1,0 +1,43 @@
+<!Doctype HTML>
+<htmnl>
+    <head>
+        <title>Fetch Demo</title>
+        <style>
+            .heading{
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 40px;
+                text-align: center;
+                text-shadow: 0px 1px 3px;
+                color: blue;
+                margin-bottom: 20px;
+            }
+            .para{
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 20px;
+                text-align: center;
+                font-weight: bold;
+            }
+            #show_btn{
+                border: 1px solid white;
+                border-radius: 10px;
+                width: 100px;
+                height: 40px;
+                background-color: black;
+                color: beige;
+                padding: 5px;
+                margin-top: 10px;
+                cursor: pointer;
+            }
+            
+        </style>
+        <script async defer src="fetch.js"></script>
+    </head>
+    <body>
+        <h1 class="heading">Flipkart</h1>
+        <p class="para">App created for listing of different products with images</p>
+        <button onclick="show()" id="show_btn">Show</button>
+        <div id="product_div">
+
+        </div>
+    </body>
+</htmnl>

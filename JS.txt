@@ -1,0 +1,44 @@
+-> JS basic intro
+-> Script tag
+-> var , let and const 
+-> Data types - Number , String , null , undefined and SYmbols.
+
+
+
+
+Js - Numbers - Integers, floating(numbers with decimal)
+
+using var , let and const variable define - implicity -> 
+
+let name='john'; -> ist programme
+
+
+let name = 58;
+
+
+
+JAVA -> int name = 
+    String name = 
+
+
+
+
+    DOM - Document Object Model 
+
+    <html>
+        <head></head>
+        <body>
+            <div>
+                <h1></h1>
+                <p></p>
+                <img>
+    </html>
+
+
+    DOM Manipulation - Changing the current DOM - adding or removing or modifying the existing DOM
+    - Element access  - document.getElemmentByID BY classname , 
+
+
+
+    // Client - Server Architecture 
+    Based on some actions by user/end-user/ Client -> Request which is sent to our server or backend -> backend with send a response 

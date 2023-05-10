@@ -66,7 +66,41 @@ Js control structure - if-else , for and while
 Js DOM manipulation - 
 Js Thread of execution/callback functions
 
-Js promises - 
+Js promises - fetch
+promise will either fulfill or not fulfill 
+when promise is fulfilled it will be under the then block
+when promise is not fullfilled it will be under the catch block
 
 
+Arror functions - we dont like naming functions everytime 
+- defining standard function is long so shorthand is arrow fucntions 
 
+()=>{
+    return 
+}
+fucntion greet(name){
+    return
+}
+
+// argument passed in arrow functions
+(name)=>{
+    return "hello" + name; 
+}
+
+(name,age,email)=>{
+
+}
+
+
+JSON - Js object notation - similar to objects in js 
+
+There are lot of frameworks of js - angular , react , vue , next , node js , express js , tesseract-js
+ jSON and js objects - there is inverted commas in key in JSON but not in objects in js.
+
+
+// fetch syntax -
+fetch(url).then(()=>{
+    // statment when promise is fulfilled ie. sucessfull case
+}).catch(()=>{
+    // when promise is not fulfilled || error type situation.
+})

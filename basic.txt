@@ -1,0 +1,174 @@
+// Run time complexity 
+
+o(n), o(1),O(n2), o(nlogn), 
+
+
+arr = [n elemnets];
+for (arr.length){
+
+}
+n number 
+
+for (n)
+    for(n)
+
+n^2 - iterarte
+
+
+
+arr = n elemnets
+for (int i=1;i<=5;i++){
+    for (int j = 1 ; j<=5;j++){
+
+    }
+}
+
+i= 1 , j= 1,2,3,4,5
+i= 2 , 
+
+
+
+DART Intro : 
+- Modern , object -oriented programming , 
+- Syntax simple
+- Strong typing language 
+- Asynchrous programming - when API operations
+- librarier and packages  
+- JIT and AOT 
+jit  - just in time - compliations - hot reloading - 
+AOT  - Ahead of time - mode 
+- cross platform
+
+
+// Variables in DART 
+
+// How we specify/define the variables in DART
+
+// Data types in DART
+
+- Numbers - int - Integer , double - floating number (decimal number)
+- String - group of characters - 'Hello World'
+- Boolean - true or false / 1 or 0 / yes or n (bool)
+- Lists - List - homogenous and heterogenous - [1,2,2, 'John'] , Maps , Sets , Runes and symbols 
+
+- Dynamic - which can hold any value - (dynamic)
+
+int number =4;
+String = 'yufgy' 
+
+// keyword -var - using var also we can define the variable - automatically will determine the data types
+var num = 9;
+var name = 'John';
+
+final and const - used to define constants in DART
+const pie = 3.1434;
+final name = 'john'
+// once the value is assigned the value can not be modified in that block
+
+
+// Functions in DART 
+ functions  - set of statements
+ Syntax :
+ returnType functionName(parameters){
+    // set of statements
+    // which will be executed
+ }
+
+ returnType - void , int , String , 
+
+ void greet(String name){
+    print('Hello $name'); // print on the screen
+ }
+
+ Anonymous functions - functions for which no need to define its name 
+
+ var result  = (int a, int b){
+    return a*b;
+ }
+
+// usage : result(2,3) == // o/p 6
+
+
+// Collections - 
+- List , Sets , Maps -DPP
+
+-> List - Ordered Collection , allow duplicates elemnets , modify and remove the elemnets
+Syntax In dart :
+List<String> names  = ['Alice','john', 'bob']; 
+
+// basic operations:
+names.add('abc'); //add the element at the last index/postion.
+// access any element from the list names 
+names[0], names[1],... 
+// remove the element .
+names.remove('bob');
+// sort() , reverse() , 
+Combining two list 
+List<String> list1 =[// conatins element];
+List<String> list2 =[// contains elements];
+
+List<String> total = [...list1 ,...list2]; // ... is known as spread operator.
+
+
+
+
+
+-> Sets - Unordered collection , not allow duplicate elements , modify and remove the elements
+Syntax in DART 
+
+Set<int> numbers = {1,2,3,4};
+
+basic operations
+numbers.add(5) // add it to the last postion
+access any element :
+numbers.contains(2) // o/p true/false
+
+// remove the element
+numbers.remove('4');
+
+
+// Maps - key-value pair - Mostly we will using this 
+Syntax : 
+
+Map<String, String> capitals = {
+   'India' : 'Delhi',
+   'USA' : 'New york',
+   'japan' : 'tokyo'
+}
+
+Map<String, String> persons ={
+   'name' : 'Gaurav',
+   'email' : xyz@abc.com',
+   'password' : 'dhikbfuybcud'
+}
+
+persons['name'] // o/p= Gaurav
+
+persons['email'] // o/p
+
+JSON - Javascript Object Notation - Objects
+
+
+persons.remove(key);
+persons.length // length
+
+
+// Iterations in Collections i.e for loop in Collections
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

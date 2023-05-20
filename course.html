@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course List</title>
+  <style>
+    /* Base styles */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f1f1f1;
+    }
+
+    .course-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .course {
+      width: calc(30% - 10px);
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 15px;
+      cursor: pointer;
+      position: relative;
+      transition: background-color 0.3s;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .course:hover {
+      background-color: #b6aaaa;
+    }
+
+    .pause-icon {
+      width: 100%;
+      height: 130px;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 24px;
+    }
+
+    .course-info {
+      flex-grow: 1;
+    }
+
+    .course-heading {
+      font-weight: bold;
+    }
+
+    .course-subheading {
+      color: #888;
+      margin-top: 5px;
+    }
+
+    .course-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 10px;
+      color: #888;
+      font-size: 14px;
+    }
+
+    .popover {
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      position: absolute;
+      top: calc(100% - 100px);
+      left: 60px;
+      z-index: 1;
+      display: none;
+    }
+
+    .popover.active {
+      display: block;
+    }
+
+    .popover-heading {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .popover-subheading {
+      color: #888;
+      margin-top: 5px;
+      margin-bottom: 10px;
+    }
+
+    .popover-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .popover-list-item {
+      margin-bottom: 5px;
+    }
+
+    .popover-list-item:hover {
+      color: blue;
+      cursor: pointer;
+    }
+
+    #wishlist_btn{
+      width : 100%;
+      height : 50px;
+      border: 1px solid white;
+      background-color: rgb(44, 226, 44);
+      color: white;
+      text-align: center;
+      transition: background-color .3s;
+    }
+
+    #wishlist_btn:hover{
+      background-color: rgb(5, 61, 5);
+    }
+
+    /* Star rating */
+    .star {
+  display: inline-block;
+  font-size: 18px;
+  color: gold;
+  line-height: 1;
+}
+
+.star.filled::before {
+  content: "\2605";
+}
+
+.star.half-filled::before {
+  content: "\2605";
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  width: 50%;
+  vertical-align: bottom;
+  line-height: 1;
+}
+
+.star.half-filled::after {
+  content: "\2606";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  color: gold;
+  overflow: hidden;
+  vertical-align: bottom;
+  line-height: 1;
+}
+
+.star.empty::before {
+  content: "\2606";
+}
+
+
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .pagination button {
+      background-color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      margin: 0 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .pagination button.active {
+      background-color: #f7f7f7;
+    }
+  </style>
+</head>
+<body>
+  <div id="course-list" class="course-container"></div>
+
+  <div class="pagination"></div>
+
+
+  <script>
+    window.addEventListener('DOMContentLoaded',()=>{
+      fetchCourse();
+    })
+    async function fetchCourse(){
+      await fetch('http://localhost:3000/api/courses').then((res)=>{
+        return res.json();
+      }).then((data)=>{
+        displayCourse(data);
+      }).catch((error)=>{
+        console.log(error)
+      })
+    }
+    function displayCourse(courses){
+      // Render course list
+      console.log(courses);
+      const itemsPerPage = 4;
+      let currentPage = 1;
+      const totalPages = Math.ceil(courses.length / itemsPerPage);
+
+      const courseList = document.getElementById("course-list");
+      const paginationContainer = document.querySelector(".pagination");
+
+      function renderCourses(page) {
+        courseList.innerHTML = "";
+        const start = (page - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const currentCourses = courses.slice(start, end);
+
+        currentCourses.forEach((course) => {
+          const courseElement = document.createElement("div");
+          courseElement.classList.add("course");
+
+          const pauseIcon = document.createElement("div");
+          pauseIcon.textContent = "⏸️";
+          pauseIcon.classList.add("pause-icon");
+          courseElement.appendChild(pauseIcon);
+
+          const courseInfo = document.createElement("div");
+          courseInfo.classList.add("course-info");
+
+          const courseHeading = document.createElement("h2");
+          courseHeading.classList.add("course-heading");
+          courseHeading.textContent = `${course.subject_name} - ${course.class}`;
+          courseInfo.appendChild(courseHeading);
+
+          const courseSubheading = document.createElement("p");
+          courseSubheading.classList.add("course-subheading");
+          courseSubheading.textContent = course.chapter_name;
+          courseInfo.appendChild(courseSubheading);
+
+          const ratings = course.topic_list.map((topic) => parseInt(topic.rating));
+          const avgRating = ratings.reduce((total, rating) => total + rating, 0) / ratings.length;
+
+          const ratingElement = document.createElement("div");
+            ratingElement.classList.add("rating");
+
+            const fullStars = Math.floor(avgRating);
+            const decimalPart = avgRating - fullStars;
+
+            for (let i = 0; i < 5; i++) {
+              const star = document.createElement("span");
+              star.classList.add("star");
+
+              if (i < Math.floor(avgRating)) {
+                star.classList.add("filled");
+              } else if (i === Math.floor(avgRating) && decimalPart >= 0.5) {
+                star.classList.add("half-filled");
+              } else {
+                star.classList.add("empty");
+              }
+
+              ratingElement.appendChild(star);
+            }
+
+            courseInfo.appendChild(ratingElement);
+
+
+
+          const courseMeta = document.createElement("div");
+          courseMeta.classList.add("course-meta");
+
+          const courseMetaText = document.createElement("p");
+          courseMetaText.textContent = `${course.topic_list.length} courses`;
+          courseMeta.appendChild(courseMetaText);
+
+          courseInfo.appendChild(courseMeta);
+          courseElement.appendChild(courseInfo);
+
+          const popover = document.createElement("div");
+          popover.classList.add("popover");
+
+          const popoverHeading = document.createElement("h3");
+          popoverHeading.classList.add("popover-heading");
+          popoverHeading.textContent ='> '+ course.chapter_name;
+          popover.appendChild(popoverHeading);
+
+          const popoverSubheading = document.createElement("p");
+          popoverSubheading.classList.add("popover-subheading");
+          popoverSubheading.textContent = `${course.subject_name} - ${course.class}`;
+          popover.appendChild(popoverSubheading);
+
+          const popoverList = document.createElement("ul");
+          popoverList.classList.add("popover-list");
+
+          course.topic_list.forEach((topic,index) => {
+            const popoverListItem = document.createElement("li");
+            popoverListItem.classList.add("popover-list-item");
+            popoverListItem.textContent =index+1+" "+ topic.topic;
+            popoverListItem.addEventListener("mouseover", () => {
+              popoverListItem.style.color = "blue";
+            });
+            popoverListItem.addEventListener("mouseout", () => {
+              popoverListItem.style.color = "";
+            });
+            popoverList.appendChild(popoverListItem);
+            
+          });
+
+          popover.appendChild(popoverList);
+
+          const popoverMeta = document.createElement("div");
+          popoverMeta.classList.add("course-meta");
+
+          const avgRatingText = document.createElement("p");
+          avgRatingText.textContent = `Average Rating: ${avgRating.toFixed(1)}`;
+
+          const courseCountText = document.createElement("p");
+          courseCountText.textContent = `Courses: ${course.topic_list.length}`;
+
+          const wishlistButton = document.createElement('button');
+          wishlistButton.setAttribute('id','wishlist_btn');
+          wishlistButton.innerText = 'Add to Cart';
+
+
+          popoverMeta.appendChild(avgRatingText);
+          popoverMeta.appendChild(courseCountText);
+
+          popover.appendChild(popoverMeta);
+          popover.appendChild(wishlistButton);
+          courseElement.appendChild(popover);
+
+          courseElement.addEventListener("click", (event) => {
+            event.stopPropagation();
+            togglePopover(popover);
+          });
+
+          courseList.appendChild(courseElement);
+        });
+      }
+      function renderPagination(){
+        paginationContainer.innerHTML = "";
+
+        const prevButton = document.createElement("button");
+        prevButton.textContent = "Prev";
+        prevButton.disabled = currentPage === 1;
+        prevButton.addEventListener("click", () => {
+          currentPage--;
+          renderCourses(currentPage);
+          renderPagination();
+        });
+        paginationContainer.appendChild(prevButton);
+
+        const currentPageButton = document.createElement("button");
+        currentPageButton.textContent = currentPage;
+        currentPageButton.disabled = true;
+        paginationContainer.appendChild(currentPageButton);
+
+        const nextButton = document.createElement("button");
+        nextButton.textContent = "Next";
+        nextButton.disabled = currentPage === totalPages;
+        nextButton.addEventListener("click", () => {
+          currentPage++;
+          renderCourses(currentPage);
+          renderPagination();
+        });
+        paginationContainer.appendChild(nextButton);
+      }
+
+        function togglePopover(popover) {
+        popover.classList.toggle("active");
+        }
+
+        renderCourses(currentPage);
+        renderPagination();
+
+      }
+  </script>
+
+</body>
+</html>

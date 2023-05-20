@@ -44,6 +44,27 @@
  // promise fulfill - complete - data retrieve kr lega 
  // promise will not full fill - error - data 
 
+//  {
+//     "name": "Handcrafted Trees Mug",
+//     "slug": "Handcrafted-Trees-Mug",
+//     "tags": [
+//       "Trees"
+//     ],
+//     "added": 1485723766805,
+//     "price": 10.99,
+//     "filename": "400_002e1ecb8bd2.jpg",
+//     "imageUrl": "http://www.resplashed.com/img/400_002e1ecb8bd2.jpg",
+//     "itemType": "mug",
+//     "imageHash": "2b1d5b5ef4b37b4f5d0dccade1b69987",
+//     "productImg": "mug-400_002e1ecb8bd2.jpg",
+//     "description": "enim corporis voluptatibus laudantium possimus alias dolorem voluptatem similique aut aliquam voluptatem voluptatem omnis id consequatur",
+//     "imageCredit": {
+//       "link": "http://www.resplashed.com/photographer/martin_wessely/",
+//       "artist": "Martin Wessely"
+//     },
+//     "manufacturer": "OHara-Group"
+//   }
+
  async function show(){
     
     await fetch(' https://api.npoint.io/aee14bc5a3f1e5ac2c7d').then((res)=>{//res is an argument so when fetch will retrieve the data , it will automatically store the data in this varible named res.
@@ -54,19 +75,48 @@
 
         addList(data);
     }).catch((err)=>{
+        console.log('Error due to fetching')
         console.log(err);
     })
  }
-
+ // data is an array of objects 
  function addList(data){
-    const parentDiv  = document.getElementById('product_div');
-
-    for(let i=0;i<data.length;i++){
-        const newDiv = document.createElement('div');
-        newDiv.setAttribute('class','div_list');
-        newDiv.innerText = data[i].name;
-        parentDiv.appendChild(newDiv);
+    console.log(data);
+    const mainDiv = document.getElementById('product_div');
+    try {
+        data.map((product)=>{
+            const newDiv = document.createElement('div');
+            newDiv.setAttribute('id','product');
+    
+            const h4 = document.createElement('h4');
+            h4.innerText = product.name;
+    
+            const  img = document.createElement('img');
+            img.setAttribute('src',product.imageUrl);
+    
+            const h6 = document.createElement('h6');
+            h6.innerText = 'INR: '+product.price;
+    
+            newDiv.appendChild(img);
+            newDiv.appendChild(h4);
+            newDiv.appendChild(h6);
+    
+            mainDiv.appendChild(newDiv);
+        })
+    }catch{
+        const h1 =document.createElement('h1');
+        h1.innerText ='Error while showing the products...... Internal Server Error'
+        mainDiv.appendChild(h1);
     }
+   
+
  }
+
+ // try and catch - industry our each code written should be in try and catch
+
+ // try - conatins the code which we are writing , it will monitor the code until any eror comes 
+ // catch - conatains when error comes what needs to be done
+ 
+
 
 

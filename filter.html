@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter</title>
+    <style>
+        #product{
+            border: 1px solid black;
+            margin : 10px;
+            width: 200px;
+
+        }
+    </style>
+</head>
+<body>
+    <h3>Filtering </h3>
+    <p>Click here to list the product which have prices more than 900</p>
+    <button onclick="filtering()">Show</button>
+    <button onclick="display(products)">Discard</button>
+
+    <div id="list"></div>
+    <script>
+        const products = [{
+            name : 'Item 1',
+            price : 1000
+        },{
+            name : 'Item 2',
+            price : 1200
+        },{
+            name : 'Item 3',
+            price : 500
+        },{
+            name : 'Item 4',
+            price : 1100
+        },{
+            name : 'Item 5',
+            price : 1300
+        },{
+            name : 'Item 6',
+            price : 1500
+        },{
+            name : 'Item 7',
+            price : 9000
+        },{
+            name : 'Item 8',
+            price : 200
+        },{
+            name : 'Item 9',
+            price : 400
+        }]
+
+        const mainDiv = document.getElementById('list');
+        display(products);
+        function display(arr){
+            mainDiv .innerHTML = "";
+            arr.map((prod)=>{
+            const div = document.createElement('div');
+            div.setAttribute('id','product');
+
+            const h5 = document.createElement('h5');
+            h5.innerText = prod.name;
+
+            const strong = document.createElement('strong');
+            strong.innerText = prod.price;
+
+            div.appendChild(h5);
+            div.appendChild(strong)
+
+            mainDiv.appendChild(div);
+        
+        });
+    }
+        function filtering(){
+            console.log('running filtering');
+            const newArry = products.filter((prods)=>{
+                return prods.price > 900;
+            });
+            console.log(newArry);
+            display(newArry);
+        }
+    </script>
+</body>
+</html>

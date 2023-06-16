@@ -1,0 +1,73 @@
+HTMl : 
+Intro , tags , attributes 
+
+CSS : 
+box model , display , types of css and its priorities , css selectors
+
+
+JS :
+Intro to js, data types , (var , let and const) , control flow statements , thread of execution , closures , async/await - fetch,
+ES6 - map , filter and reduce
+
+map - iterate array , each element access directly without using index,
+
+const arr = ['apple', 'banana','orange'];
+
+arr.map((fruit)=>{
+    console.log(fruit);
+})
+Es6  - 
+const elements = ['apple','banana', 'orange', 'water melon', 'grapes','mango','lichi','kiwi']
+
+fruit = apple , fruit banana , fruit = orange
+
+
+2 filter  - used for filtering purpose - 
+this will create a new array.
+
+const numbers = [1,2,3,4,54,5,6,7,87];
+
+const evenNumber = numbers.filter((number)=>{
+    return number % 2 === 0;
+})
+
+
+
+console.log(evenNumber);
+
+
+Reduce - it is used to reduce an array to a single value
+by applying some function
+- it will not change the original array.
+- if array is empty - it will error
+
+[ele1 , ele2, ele3 , ele4]
+
+array.reduce((para1, para2)=>{
+    return para1-para2
+})
+
+execution : 
+ist parameter  - para1 - accumulator - it stores result
+2nd parameter - para 2 - it will access each element of array
+
+
+
+para1 = ele1;
+para2 = ele2;
+
+ele1-ele2
+
+para1 -> result will store here
+
+Array methods 
+1 array.length - >  length of array return
+2 array.toString -> converts array to toString
+3 array.pop -> deletes the last element of the array
+4 array.push -> add the element at the last index.
+
+array.delete
+array.shift
+array.concat
+array.flat
+

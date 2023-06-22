@@ -411,3 +411,76 @@ lexical env of inner function
 var y = 5; - own scope 
 var x = 40 - outside of its own scope which is lexical env of outer fucntion so as inner is the child of outer so it is able to access the outer function lexical env which forms the closure between the two parent-child fucntions.
 
+
+
+asynchronus Javascript
+
+
+synchrous - one by one from top to bottom and asynchronus
+
+function one(){
+    var name = "eve";
+    console.log(name);
+    let num =6;
+    let result = num * num;
+}
+one();
+
+asynchrous 
+
+execution will be done parallely
+
+setTImeout(function, 5000);
+console.log("Error");
+
+Callback functions :
+ - it is common way to handle asynchronus behaviour in js
+ - argument pass to the asynchrous function - setTImeout , setInterval , fetch.
+
+ function multiply(num1 , num2){
+    return num1*num2;
+ }
+
+ multiply(2,3);
+
+function greet(name, callback){
+    console.log("Hello",name);
+    callback();
+}
+
+function goodbye(){
+    console.log(goodbye);
+}
+
+// function myFirst(){
+//     console.log("first");
+// }
+// function mySecond(){
+//     console.log('second');
+// }
+// myFirst();
+// mySecond();
+
+
+// function myFirst(){
+//     console.log("first");
+//     mySecond();
+// }
+// function mySecond(){
+//     console.log('second');
+// }
+// myFirst();
+
+
+
+function myFirst(text , mycallback){
+    console.log(text);
+    mycallback();
+}
+
+function mySecond(){
+    console.log('second');
+}
+
+myFirst('first',mySecond);
+
